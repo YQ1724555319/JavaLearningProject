@@ -1,9 +1,9 @@
 /**
 @Yq
-¶àÏß³Ì-¾²Ì¬Í¬²½º¯ÊıµÄËøÊÇClass¶ÔÏó
-¾²Ì¬½øÄÚ´æÊ±£¬ÄÚ´æÖĞÃ»ÓĞ±¾Àà¶ÔÏó£¬µ«ÊÇÒ»¶¨ÓĞ¸ÃÀà¶ÔÓ¦µÄ×Ö½ÚÂëÎÄ¼ş¶ÔÏó¡£
-Ò²¾ÍÊÇÀàÃû.Class ¸Ã¶ÔÏóµÄÀàĞÍÊÇClass
-¾²Ì¬µÄÍ¬²½·½·¨£¬Ê¹ÓÃµÄËøÊÇ¸Ã·½·¨ËùÔÚÀàµÄ×Ö½ÚÂëÎÄ¼ş¶ÔÏó¡£ ÀàÃû.Class
+å¤šçº¿ç¨‹-é™æ€åŒæ­¥å‡½æ•°çš„é”æ˜¯Classå¯¹è±¡
+é™æ€è¿›å†…å­˜æ—¶ï¼Œå†…å­˜ä¸­æ²¡æœ‰æœ¬ç±»å¯¹è±¡ï¼Œä½†æ˜¯ä¸€å®šæœ‰è¯¥ç±»å¯¹åº”çš„å­—èŠ‚ç æ–‡ä»¶å¯¹è±¡ã€‚
+ä¹Ÿå°±æ˜¯ç±»å.Class è¯¥å¯¹è±¡çš„ç±»å‹æ˜¯Class
+é™æ€çš„åŒæ­¥æ–¹æ³•ï¼Œä½¿ç”¨çš„é”æ˜¯è¯¥æ–¹æ³•æ‰€åœ¨ç±»çš„å­—èŠ‚ç æ–‡ä»¶å¯¹è±¡ã€‚ ç±»å.Class
 */
 class Ticket implements Runnable {
     private static int ticket = 100;
@@ -11,16 +11,16 @@ class Ticket implements Runnable {
     public void run() {
         if (i) {
             while (true)
-                //synchronized(this) { // Í¬²½º¯ÊıµÄËøÊÇthis
-                synchronized(Ticket.class) { //¾²Ì¬Í¬²½º¯ÊıµÄÊÇ¸ÃÀà¶ÔÓ¦µÄ×Ö½ÚÂë¶ÔÏó
+                //synchronized(this) { // åŒæ­¥å‡½æ•°çš„é”æ˜¯this
+                synchronized(Ticket.class) { //é™æ€åŒæ­¥å‡½æ•°çš„æ˜¯è¯¥ç±»å¯¹åº”çš„å­—èŠ‚ç å¯¹è±¡
                     if (ticket > 0) {
                         try {
-                            Thread.sleep(10); // ·Å´ó°²È«ÎÊÌâ
+                            Thread.sleep(10); // æ”¾å¤§å®‰å…¨é—®é¢˜
                         } catch(InterruptedException e) {
                             e.toString();
                         }
                         System.out.println(Thread.currentThread().getName()+"----"+ticket--);
-                    } else System.exit(0); // ½áÊø³ÌĞò
+                    } else System.exit(0); // ç»“æŸç¨‹åº
                 }
         } else {
             while (true) {
@@ -28,26 +28,26 @@ class Ticket implements Runnable {
             }
         }
     }
-    public static synchronized void show() { // µ±Í¬²½º¯Êı¾²Ì¬ĞŞÊÎ£¬ËùÓÃµÄËøÊÇÀàÃû.class£¬ÊÇ¶ÔÓ¦ÀàµÄ×Ö½ÚÂë¶ÔÏó
+    public static synchronized void show() { // å½“åŒæ­¥å‡½æ•°é™æ€ä¿®é¥°ï¼Œæ‰€ç”¨çš„é”æ˜¯ç±»å.classï¼Œæ˜¯å¯¹åº”ç±»çš„å­—èŠ‚ç å¯¹è±¡
         if (ticket > 0) {
             try {
-                Thread.sleep(10); // ·Å´ó°²È«ÎÊÌâ
+                Thread.sleep(10); // æ”¾å¤§å®‰å…¨é—®é¢˜
             } catch(InterruptedException e) {
                 e.toString();
             }
             System.out.println(Thread.currentThread().getName()+"--///--"+ticket--);
-        } else System.exit(0); // ½áÊø³ÌĞò
+        } else System.exit(0); // ç»“æŸç¨‹åº
     }
 }
 
 public class ThreadDemo6 {
     public static void main(String[] args) {
         Ticket t = new Ticket();
-        Thread t1 = new Thread(t);  // ½¨Á¢Ò»¸öÏß³Ì£¬²¢ÇÒÕâ¸öÏß³ÌÊôÓÚ¶ÔÏót
+        Thread t1 = new Thread(t);  // å»ºç«‹ä¸€ä¸ªçº¿ç¨‹ï¼Œå¹¶ä¸”è¿™ä¸ªçº¿ç¨‹å±äºå¯¹è±¡t
         Thread t2 = new Thread(t);
         t1.start();
         try {
-            Thread.sleep(10); // ÇĞ»»Ïß³Ì
+            Thread.sleep(10); // åˆ‡æ¢çº¿ç¨‹
         } catch (Exception e) {
         }
         t.i = false;
